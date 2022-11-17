@@ -1,0 +1,9 @@
+.headline {
+  height: 25px;
+  padding: 10px;
+  background: rgb(67, 126, 253);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

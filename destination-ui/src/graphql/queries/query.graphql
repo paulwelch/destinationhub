@@ -1,0 +1,178 @@
+query AccountDetail($email: String!) {
+  allAccounts(where: { user: { email: $email } }) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    firstName
+    lastName
+    phone
+    address1
+    address2
+    city
+    state {
+      id
+      code
+      name
+      capital
+    }
+    zip
+  }
+}
+
+mutation UpdateAccount(
+  $id: ID!
+  $firstName: String!
+  $lastName: String!
+  $phone: String!
+  $address1: String!
+  $address2: String
+  $city: String!
+  $zip: Int!
+  $stateCode: String!
+) {
+  updateAccount(
+    id: $id
+    data: {
+      firstName: $firstName
+      lastName: $lastName
+      phone: $phone
+      address1: $address1
+      address2: $address2
+      city: $city
+      zip: $zip
+      state: { connect: { code: $stateCode } }
+    }
+  ) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    firstName
+    lastName
+    phone
+    address1
+    address2
+    city
+    state {
+      id
+      code
+      name
+    }
+    zip
+  }
+}
+
+mutation CreateAccount(
+  $firstName: String!
+  $lastName: String!
+  $phone: String!
+  $address1: String!
+  $address2: String
+  $city: String!
+  $zip: Int!
+  $stateCode: String!
+  $userName: String!
+  $userEmail: String!
+  $userPassword: String!
+) {
+  createAccount(
+    data: {
+      firstName: $firstName
+      lastName: $lastName
+      phone: $phone
+      address1: $address1
+      address2: $address2
+      city: $city
+      zip: $zip
+      user: {
+        create: { name: $userName, email: $userEmail, password: $userPassword }
+      }
+      state: { connect: { code: $stateCode } }
+    }
+  ) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    firstName
+    lastName
+    phone
+    address1
+    address2
+    city
+    state {
+      id
+      code
+      name
+    }
+    zip
+  }
+}
+
+query Locations {
+  allLocations {
+    id
+    name
+    shortDescription
+    state {
+      id
+      code
+      name
+    }
+    city {
+      id
+      name
+      fipsCode
+    }
+    images {
+      filename
+    }
+  }
+}
+
+query LocationDetail($id: ID!) {
+  allLocations(where: { id: $id }) {
+    id
+    name
+    shortDescription
+    state {
+      id
+      code
+      name
+      capital
+    }
+    city {
+      id
+      name
+      fipsCode
+    }
+    images {
+      filename
+    }
+    description {
+      document
+    }
+  }
+}
+
+query ContentBlock($page: String!) {
+  allContentBlocks(
+    where: { AND: [{ page: $page }, { active: true }] }
+    orderBy: { blockOrder: asc }
+  ) {
+    id
+    page
+    column
+    blockOrder
+    richText {
+      document
+    }
+  }
+}

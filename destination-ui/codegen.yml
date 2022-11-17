@@ -1,0 +1,13 @@
+overwrite: true
+schema: "../destination-svc/schema.graphql"
+documents: "src/graphql/queries/*.graphql"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+config:
+  reactApolloVersion: 3
+  exposeQueryKeys: true

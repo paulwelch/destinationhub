@@ -1,0 +1,68 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Destination Service",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": [
+                "dev"
+              ],
+            "env": {
+                    "PORT": "3000",
+                    "NODE_ENV": "development", 
+                    "NODE_OPTIONS": "--inspect", 
+                    "DISABLE_LOGGING": "true"
+            },
+            "cwd": "${workspaceFolder}/destination",
+            "request": "launch",
+            "port": 5858,
+            "console": "internalConsole",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/destination/**",
+                "!**/node_modules/**"
+            ],
+            "type": "node"
+        },
+        {
+            "name": "Debug Destination Service",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": [
+                "debug"
+              ],
+            "env": {
+                    "PORT": "3000",
+                    "NODE_ENV": "development", 
+                    "NODE_OPTIONS": "--inspect", 
+                    "DISABLE_LOGGING": "true"
+            },
+            "cwd": "${workspaceFolder}/destination",
+            "request": "launch",
+            "port": 5858,
+            "console": "internalConsole",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/destination/**",
+                "!**/node_modules/**"
+            ],
+            "type": "node"
+        },
+        {
+            "name": "Attach",
+            "type": "node",
+            "request": "attach",
+            "port": 5858,
+            "sourceMaps": false,
+            "outFiles": [],
+            "localRoot": "${workspaceRoot}/destination",
+            "remoteRoot": null
+        }
+    ]
+}

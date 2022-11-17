@@ -1,0 +1,2355 @@
+type User {
+  id: ID!
+  name: String
+  email: String
+  password: PasswordState
+  account: Account
+}
+
+type PasswordState {
+  isSet: Boolean!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  email: String
+  email_not: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  email_i: String
+  email_not_i: String
+  email_contains_i: String
+  email_not_contains_i: String
+  email_starts_with_i: String
+  email_not_starts_with_i: String
+  email_ends_with_i: String
+  email_not_ends_with_i: String
+  email_in: [String]
+  email_not_in: [String]
+  password_is_set: Boolean
+  account: AccountWhereInput
+  account_is_null: Boolean
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  name: String
+  email: String
+}
+
+enum SortUsersBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+}
+
+input UserOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  email: OrderDirection
+}
+
+enum OrderDirection {
+  asc
+  desc
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  account: AccountRelateToOneInput
+}
+
+input AccountRelateToOneInput {
+  create: AccountCreateInput
+  connect: AccountWhereUniqueInput
+  disconnect: AccountWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input UsersUpdateInput {
+  id: ID!
+  data: UserUpdateInput
+}
+
+input UserCreateInput {
+  name: String
+  email: String
+  password: String
+  account: AccountRelateToOneInput
+}
+
+input UsersCreateInput {
+  data: UserCreateInput
+}
+
+type Account {
+  id: ID!
+  firstName: String
+  lastName: String
+  phone: String
+  address1: String
+  address2: String
+  city: String
+  state: State
+  zip: Int
+  user: User
+}
+
+input AccountWhereInput {
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  firstName: String
+  firstName_not: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  firstName_i: String
+  firstName_not_i: String
+  firstName_contains_i: String
+  firstName_not_contains_i: String
+  firstName_starts_with_i: String
+  firstName_not_starts_with_i: String
+  firstName_ends_with_i: String
+  firstName_not_ends_with_i: String
+  firstName_in: [String]
+  firstName_not_in: [String]
+  lastName: String
+  lastName_not: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  lastName_i: String
+  lastName_not_i: String
+  lastName_contains_i: String
+  lastName_not_contains_i: String
+  lastName_starts_with_i: String
+  lastName_not_starts_with_i: String
+  lastName_ends_with_i: String
+  lastName_not_ends_with_i: String
+  lastName_in: [String]
+  lastName_not_in: [String]
+  phone: String
+  phone_not: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  phone_i: String
+  phone_not_i: String
+  phone_contains_i: String
+  phone_not_contains_i: String
+  phone_starts_with_i: String
+  phone_not_starts_with_i: String
+  phone_ends_with_i: String
+  phone_not_ends_with_i: String
+  phone_in: [String]
+  phone_not_in: [String]
+  address1: String
+  address1_not: String
+  address1_contains: String
+  address1_not_contains: String
+  address1_starts_with: String
+  address1_not_starts_with: String
+  address1_ends_with: String
+  address1_not_ends_with: String
+  address1_i: String
+  address1_not_i: String
+  address1_contains_i: String
+  address1_not_contains_i: String
+  address1_starts_with_i: String
+  address1_not_starts_with_i: String
+  address1_ends_with_i: String
+  address1_not_ends_with_i: String
+  address1_in: [String]
+  address1_not_in: [String]
+  address2: String
+  address2_not: String
+  address2_contains: String
+  address2_not_contains: String
+  address2_starts_with: String
+  address2_not_starts_with: String
+  address2_ends_with: String
+  address2_not_ends_with: String
+  address2_i: String
+  address2_not_i: String
+  address2_contains_i: String
+  address2_not_contains_i: String
+  address2_starts_with_i: String
+  address2_not_starts_with_i: String
+  address2_ends_with_i: String
+  address2_not_ends_with_i: String
+  address2_in: [String]
+  address2_not_in: [String]
+  city: String
+  city_not: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  city_i: String
+  city_not_i: String
+  city_contains_i: String
+  city_not_contains_i: String
+  city_starts_with_i: String
+  city_not_starts_with_i: String
+  city_ends_with_i: String
+  city_not_ends_with_i: String
+  city_in: [String]
+  city_not_in: [String]
+  state: StateWhereInput
+  state_is_null: Boolean
+  zip: Int
+  zip_not: Int
+  zip_lt: Int
+  zip_lte: Int
+  zip_gt: Int
+  zip_gte: Int
+  zip_in: [Int]
+  zip_not_in: [Int]
+  user: UserWhereInput
+  user_is_null: Boolean
+}
+
+input AccountWhereUniqueInput {
+  id: ID
+  phone: String
+}
+
+enum SortAccountsBy {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  phone_ASC
+  phone_DESC
+  address1_ASC
+  address1_DESC
+  address2_ASC
+  address2_DESC
+  city_ASC
+  city_DESC
+  zip_ASC
+  zip_DESC
+}
+
+input AccountOrderByInput {
+  id: OrderDirection
+  firstName: OrderDirection
+  lastName: OrderDirection
+  phone: OrderDirection
+  address1: OrderDirection
+  address2: OrderDirection
+  city: OrderDirection
+  zip: OrderDirection
+}
+
+input AccountUpdateInput {
+  firstName: String
+  lastName: String
+  phone: String
+  address1: String
+  address2: String
+  city: String
+  state: StateRelateToOneInput
+  zip: Int
+  user: UserRelateToOneInput
+}
+
+input StateRelateToOneInput {
+  create: StateCreateInput
+  connect: StateWhereUniqueInput
+  disconnect: StateWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input UserRelateToOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: UserWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input AccountsUpdateInput {
+  id: ID!
+  data: AccountUpdateInput
+}
+
+input AccountCreateInput {
+  firstName: String
+  lastName: String
+  phone: String
+  address1: String
+  address2: String
+  city: String
+  state: StateRelateToOneInput
+  zip: Int
+  user: UserRelateToOneInput
+}
+
+input AccountsCreateInput {
+  data: AccountCreateInput
+}
+
+type Tag {
+  id: ID!
+  name: String
+  locations(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Location!]
+  _locationsMeta(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use locationsCount instead."
+    )
+  locationsCount(where: LocationWhereInput! = {}): Int
+}
+
+type _QueryMeta {
+  count: Int
+}
+
+input TagWhereInput {
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  locations_every: LocationWhereInput
+  locations_some: LocationWhereInput
+  locations_none: LocationWhereInput
+}
+
+input TagWhereUniqueInput {
+  id: ID
+}
+
+enum SortTagsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+input TagOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+}
+
+input TagUpdateInput {
+  name: String
+  locations: LocationRelateToManyInput
+}
+
+input LocationRelateToManyInput {
+  create: [LocationCreateInput]
+  connect: [LocationWhereUniqueInput]
+  disconnect: [LocationWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input TagsUpdateInput {
+  id: ID!
+  data: TagUpdateInput
+}
+
+input TagCreateInput {
+  name: String
+  locations: LocationRelateToManyInput
+}
+
+input TagsCreateInput {
+  data: TagCreateInput
+}
+
+type Location {
+  id: ID!
+  name: String
+  shortDescription: String
+  state: State
+  city: City
+  status: String
+  description: Location_description_DocumentField
+  createdDate: String
+  tags(
+    where: TagWhereInput! = {}
+    search: String
+    sortBy: [SortTagsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [TagOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Tag!]
+  _tagsMeta(
+    where: TagWhereInput! = {}
+    search: String
+    sortBy: [SortTagsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [TagOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use tagsCount instead."
+    )
+  tagsCount(where: TagWhereInput! = {}): Int
+  images(
+    where: ImageWhereInput! = {}
+    search: String
+    sortBy: [SortImagesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ImageOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Image!]
+  _imagesMeta(
+    where: ImageWhereInput! = {}
+    search: String
+    sortBy: [SortImagesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ImageOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use imagesCount instead."
+    )
+  imagesCount(where: ImageWhereInput! = {}): Int
+}
+
+type Location_description_DocumentField {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input LocationWhereInput {
+  AND: [LocationWhereInput!]
+  OR: [LocationWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  shortDescription: String
+  shortDescription_not: String
+  shortDescription_contains: String
+  shortDescription_not_contains: String
+  shortDescription_starts_with: String
+  shortDescription_not_starts_with: String
+  shortDescription_ends_with: String
+  shortDescription_not_ends_with: String
+  shortDescription_i: String
+  shortDescription_not_i: String
+  shortDescription_contains_i: String
+  shortDescription_not_contains_i: String
+  shortDescription_starts_with_i: String
+  shortDescription_not_starts_with_i: String
+  shortDescription_ends_with_i: String
+  shortDescription_not_ends_with_i: String
+  shortDescription_in: [String]
+  shortDescription_not_in: [String]
+  state: StateWhereInput
+  state_is_null: Boolean
+  city: CityWhereInput
+  city_is_null: Boolean
+  status: String
+  status_not: String
+  status_in: [String]
+  status_not_in: [String]
+  createdDate: String
+  createdDate_not: String
+  createdDate_lt: String
+  createdDate_lte: String
+  createdDate_gt: String
+  createdDate_gte: String
+  createdDate_in: [String]
+  createdDate_not_in: [String]
+  tags_every: TagWhereInput
+  tags_some: TagWhereInput
+  tags_none: TagWhereInput
+  images_every: ImageWhereInput
+  images_some: ImageWhereInput
+  images_none: ImageWhereInput
+}
+
+input LocationWhereUniqueInput {
+  id: ID
+}
+
+enum SortLocationsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  shortDescription_ASC
+  shortDescription_DESC
+  status_ASC
+  status_DESC
+  createdDate_ASC
+  createdDate_DESC
+}
+
+input LocationOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  shortDescription: OrderDirection
+  status: OrderDirection
+  createdDate: OrderDirection
+}
+
+input LocationUpdateInput {
+  name: String
+  shortDescription: String
+  state: StateRelateToOneInput
+  city: CityRelateToOneInput
+  status: String
+  description: JSON
+  createdDate: String
+  tags: TagRelateToManyInput
+  images: ImageRelateToManyInput
+}
+
+input CityRelateToOneInput {
+  create: CityCreateInput
+  connect: CityWhereUniqueInput
+  disconnect: CityWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input TagRelateToManyInput {
+  create: [TagCreateInput]
+  connect: [TagWhereUniqueInput]
+  disconnect: [TagWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input ImageRelateToManyInput {
+  create: [ImageCreateInput]
+  connect: [ImageWhereUniqueInput]
+  disconnect: [ImageWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input LocationsUpdateInput {
+  id: ID!
+  data: LocationUpdateInput
+}
+
+input LocationCreateInput {
+  name: String
+  shortDescription: String
+  state: StateRelateToOneInput
+  city: CityRelateToOneInput
+  status: String
+  description: JSON
+  createdDate: String
+  tags: TagRelateToManyInput
+  images: ImageRelateToManyInput
+}
+
+input LocationsCreateInput {
+  data: LocationCreateInput
+}
+
+type FipsGeo {
+  id: ID!
+  areaName: String
+  summaryLevel: String
+  state: State
+  county: County
+  countySubdivision: CountySubdivision
+  city: City
+  consolidatedCity: String
+}
+
+input FipsGeoWhereInput {
+  AND: [FipsGeoWhereInput!]
+  OR: [FipsGeoWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  areaName: String
+  areaName_not: String
+  areaName_contains: String
+  areaName_not_contains: String
+  areaName_starts_with: String
+  areaName_not_starts_with: String
+  areaName_ends_with: String
+  areaName_not_ends_with: String
+  areaName_i: String
+  areaName_not_i: String
+  areaName_contains_i: String
+  areaName_not_contains_i: String
+  areaName_starts_with_i: String
+  areaName_not_starts_with_i: String
+  areaName_ends_with_i: String
+  areaName_not_ends_with_i: String
+  areaName_in: [String]
+  areaName_not_in: [String]
+  summaryLevel: String
+  summaryLevel_not: String
+  summaryLevel_in: [String]
+  summaryLevel_not_in: [String]
+  state: StateWhereInput
+  state_is_null: Boolean
+  county: CountyWhereInput
+  county_is_null: Boolean
+  countySubdivision: CountySubdivisionWhereInput
+  countySubdivision_is_null: Boolean
+  city: CityWhereInput
+  city_is_null: Boolean
+  consolidatedCity: String
+  consolidatedCity_not: String
+  consolidatedCity_contains: String
+  consolidatedCity_not_contains: String
+  consolidatedCity_starts_with: String
+  consolidatedCity_not_starts_with: String
+  consolidatedCity_ends_with: String
+  consolidatedCity_not_ends_with: String
+  consolidatedCity_i: String
+  consolidatedCity_not_i: String
+  consolidatedCity_contains_i: String
+  consolidatedCity_not_contains_i: String
+  consolidatedCity_starts_with_i: String
+  consolidatedCity_not_starts_with_i: String
+  consolidatedCity_ends_with_i: String
+  consolidatedCity_not_ends_with_i: String
+  consolidatedCity_in: [String]
+  consolidatedCity_not_in: [String]
+}
+
+input FipsGeoWhereUniqueInput {
+  id: ID
+}
+
+enum SortFipsGeosBy {
+  id_ASC
+  id_DESC
+  areaName_ASC
+  areaName_DESC
+  summaryLevel_ASC
+  summaryLevel_DESC
+  consolidatedCity_ASC
+  consolidatedCity_DESC
+}
+
+input FipsGeoOrderByInput {
+  id: OrderDirection
+  areaName: OrderDirection
+  summaryLevel: OrderDirection
+  consolidatedCity: OrderDirection
+}
+
+input FipsGeoUpdateInput {
+  areaName: String
+  summaryLevel: String
+  state: StateRelateToOneInput
+  county: CountyRelateToOneInput
+  countySubdivision: CountySubdivisionRelateToOneInput
+  city: CityRelateToOneInput
+  consolidatedCity: String
+}
+
+input CountyRelateToOneInput {
+  create: CountyCreateInput
+  connect: CountyWhereUniqueInput
+  disconnect: CountyWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input CountySubdivisionRelateToOneInput {
+  create: CountySubdivisionCreateInput
+  connect: CountySubdivisionWhereUniqueInput
+  disconnect: CountySubdivisionWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input FipsGeosUpdateInput {
+  id: ID!
+  data: FipsGeoUpdateInput
+}
+
+input FipsGeoCreateInput {
+  areaName: String
+  summaryLevel: String
+  state: StateRelateToOneInput
+  county: CountyRelateToOneInput
+  countySubdivision: CountySubdivisionRelateToOneInput
+  city: CityRelateToOneInput
+  consolidatedCity: String
+}
+
+input FipsGeosCreateInput {
+  data: FipsGeoCreateInput
+}
+
+type State {
+  id: ID!
+  code: String
+  fipsCode: String
+  name: String
+  capital: String
+  largestCity: String
+  population: Int
+  areaSqMi: Int
+  landAreaSqMi: Int
+  waterAreaSqMi: Int
+  locations(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Location!]
+  _locationsMeta(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use locationsCount instead."
+    )
+  locationsCount(where: LocationWhereInput! = {}): Int
+  fipsGeo(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [FipsGeo!]
+  _fipsGeoMeta(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use fipsGeoCount instead."
+    )
+  fipsGeoCount(where: FipsGeoWhereInput! = {}): Int
+  county(
+    where: CountyWhereInput! = {}
+    search: String
+    sortBy: [SortCountiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountyOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [County!]
+  _countyMeta(
+    where: CountyWhereInput! = {}
+    search: String
+    sortBy: [SortCountiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountyOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use countyCount instead."
+    )
+  countyCount(where: CountyWhereInput! = {}): Int
+  countySubdivision(
+    where: CountySubdivisionWhereInput! = {}
+    search: String
+    sortBy: [SortCountySubdivisionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountySubdivisionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [CountySubdivision!]
+  _countySubdivisionMeta(
+    where: CountySubdivisionWhereInput! = {}
+    search: String
+    sortBy: [SortCountySubdivisionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountySubdivisionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use countySubdivisionCount instead."
+    )
+  countySubdivisionCount(where: CountySubdivisionWhereInput! = {}): Int
+  city(
+    where: CityWhereInput! = {}
+    search: String
+    sortBy: [SortCitiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CityOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [City!]
+  _cityMeta(
+    where: CityWhereInput! = {}
+    search: String
+    sortBy: [SortCitiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CityOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use cityCount instead."
+    )
+  cityCount(where: CityWhereInput! = {}): Int
+}
+
+input StateWhereInput {
+  AND: [StateWhereInput!]
+  OR: [StateWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  code: String
+  code_not: String
+  code_contains: String
+  code_not_contains: String
+  code_starts_with: String
+  code_not_starts_with: String
+  code_ends_with: String
+  code_not_ends_with: String
+  code_i: String
+  code_not_i: String
+  code_contains_i: String
+  code_not_contains_i: String
+  code_starts_with_i: String
+  code_not_starts_with_i: String
+  code_ends_with_i: String
+  code_not_ends_with_i: String
+  code_in: [String]
+  code_not_in: [String]
+  fipsCode: String
+  fipsCode_not: String
+  fipsCode_contains: String
+  fipsCode_not_contains: String
+  fipsCode_starts_with: String
+  fipsCode_not_starts_with: String
+  fipsCode_ends_with: String
+  fipsCode_not_ends_with: String
+  fipsCode_i: String
+  fipsCode_not_i: String
+  fipsCode_contains_i: String
+  fipsCode_not_contains_i: String
+  fipsCode_starts_with_i: String
+  fipsCode_not_starts_with_i: String
+  fipsCode_ends_with_i: String
+  fipsCode_not_ends_with_i: String
+  fipsCode_in: [String]
+  fipsCode_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  capital: String
+  capital_not: String
+  capital_contains: String
+  capital_not_contains: String
+  capital_starts_with: String
+  capital_not_starts_with: String
+  capital_ends_with: String
+  capital_not_ends_with: String
+  capital_i: String
+  capital_not_i: String
+  capital_contains_i: String
+  capital_not_contains_i: String
+  capital_starts_with_i: String
+  capital_not_starts_with_i: String
+  capital_ends_with_i: String
+  capital_not_ends_with_i: String
+  capital_in: [String]
+  capital_not_in: [String]
+  largestCity: String
+  largestCity_not: String
+  largestCity_contains: String
+  largestCity_not_contains: String
+  largestCity_starts_with: String
+  largestCity_not_starts_with: String
+  largestCity_ends_with: String
+  largestCity_not_ends_with: String
+  largestCity_i: String
+  largestCity_not_i: String
+  largestCity_contains_i: String
+  largestCity_not_contains_i: String
+  largestCity_starts_with_i: String
+  largestCity_not_starts_with_i: String
+  largestCity_ends_with_i: String
+  largestCity_not_ends_with_i: String
+  largestCity_in: [String]
+  largestCity_not_in: [String]
+  population: Int
+  population_not: Int
+  population_lt: Int
+  population_lte: Int
+  population_gt: Int
+  population_gte: Int
+  population_in: [Int]
+  population_not_in: [Int]
+  areaSqMi: Int
+  areaSqMi_not: Int
+  areaSqMi_lt: Int
+  areaSqMi_lte: Int
+  areaSqMi_gt: Int
+  areaSqMi_gte: Int
+  areaSqMi_in: [Int]
+  areaSqMi_not_in: [Int]
+  landAreaSqMi: Int
+  landAreaSqMi_not: Int
+  landAreaSqMi_lt: Int
+  landAreaSqMi_lte: Int
+  landAreaSqMi_gt: Int
+  landAreaSqMi_gte: Int
+  landAreaSqMi_in: [Int]
+  landAreaSqMi_not_in: [Int]
+  waterAreaSqMi: Int
+  waterAreaSqMi_not: Int
+  waterAreaSqMi_lt: Int
+  waterAreaSqMi_lte: Int
+  waterAreaSqMi_gt: Int
+  waterAreaSqMi_gte: Int
+  waterAreaSqMi_in: [Int]
+  waterAreaSqMi_not_in: [Int]
+  locations_every: LocationWhereInput
+  locations_some: LocationWhereInput
+  locations_none: LocationWhereInput
+  fipsGeo_every: FipsGeoWhereInput
+  fipsGeo_some: FipsGeoWhereInput
+  fipsGeo_none: FipsGeoWhereInput
+  county_every: CountyWhereInput
+  county_some: CountyWhereInput
+  county_none: CountyWhereInput
+  countySubdivision_every: CountySubdivisionWhereInput
+  countySubdivision_some: CountySubdivisionWhereInput
+  countySubdivision_none: CountySubdivisionWhereInput
+  city_every: CityWhereInput
+  city_some: CityWhereInput
+  city_none: CityWhereInput
+}
+
+input StateWhereUniqueInput {
+  id: ID
+  code: String
+  fipsCode: String
+  name: String
+}
+
+enum SortStatesBy {
+  id_ASC
+  id_DESC
+  code_ASC
+  code_DESC
+  fipsCode_ASC
+  fipsCode_DESC
+  name_ASC
+  name_DESC
+  capital_ASC
+  capital_DESC
+  largestCity_ASC
+  largestCity_DESC
+  population_ASC
+  population_DESC
+  areaSqMi_ASC
+  areaSqMi_DESC
+  landAreaSqMi_ASC
+  landAreaSqMi_DESC
+  waterAreaSqMi_ASC
+  waterAreaSqMi_DESC
+}
+
+input StateOrderByInput {
+  id: OrderDirection
+  code: OrderDirection
+  fipsCode: OrderDirection
+  name: OrderDirection
+  capital: OrderDirection
+  largestCity: OrderDirection
+  population: OrderDirection
+  areaSqMi: OrderDirection
+  landAreaSqMi: OrderDirection
+  waterAreaSqMi: OrderDirection
+}
+
+input StateUpdateInput {
+  code: String
+  fipsCode: String
+  name: String
+  capital: String
+  largestCity: String
+  population: Int
+  areaSqMi: Int
+  landAreaSqMi: Int
+  waterAreaSqMi: Int
+  locations: LocationRelateToManyInput
+  fipsGeo: FipsGeoRelateToManyInput
+  county: CountyRelateToManyInput
+  countySubdivision: CountySubdivisionRelateToManyInput
+  city: CityRelateToManyInput
+}
+
+input FipsGeoRelateToManyInput {
+  create: [FipsGeoCreateInput]
+  connect: [FipsGeoWhereUniqueInput]
+  disconnect: [FipsGeoWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input CountyRelateToManyInput {
+  create: [CountyCreateInput]
+  connect: [CountyWhereUniqueInput]
+  disconnect: [CountyWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input CountySubdivisionRelateToManyInput {
+  create: [CountySubdivisionCreateInput]
+  connect: [CountySubdivisionWhereUniqueInput]
+  disconnect: [CountySubdivisionWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input CityRelateToManyInput {
+  create: [CityCreateInput]
+  connect: [CityWhereUniqueInput]
+  disconnect: [CityWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input StatesUpdateInput {
+  id: ID!
+  data: StateUpdateInput
+}
+
+input StateCreateInput {
+  code: String
+  fipsCode: String
+  name: String
+  capital: String
+  largestCity: String
+  population: Int
+  areaSqMi: Int
+  landAreaSqMi: Int
+  waterAreaSqMi: Int
+  locations: LocationRelateToManyInput
+  fipsGeo: FipsGeoRelateToManyInput
+  county: CountyRelateToManyInput
+  countySubdivision: CountySubdivisionRelateToManyInput
+  city: CityRelateToManyInput
+}
+
+input StatesCreateInput {
+  data: StateCreateInput
+}
+
+type County {
+  id: ID!
+  fipsCode: String
+  name: String
+  type: String
+  state: State
+  countySubdivision(
+    where: CountySubdivisionWhereInput! = {}
+    search: String
+    sortBy: [SortCountySubdivisionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountySubdivisionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [CountySubdivision!]
+  _countySubdivisionMeta(
+    where: CountySubdivisionWhereInput! = {}
+    search: String
+    sortBy: [SortCountySubdivisionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountySubdivisionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use countySubdivisionCount instead."
+    )
+  countySubdivisionCount(where: CountySubdivisionWhereInput! = {}): Int
+  fipsGeo(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [FipsGeo!]
+  _fipsGeoMeta(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use fipsGeoCount instead."
+    )
+  fipsGeoCount(where: FipsGeoWhereInput! = {}): Int
+}
+
+input CountyWhereInput {
+  AND: [CountyWhereInput!]
+  OR: [CountyWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  fipsCode: String
+  fipsCode_not: String
+  fipsCode_contains: String
+  fipsCode_not_contains: String
+  fipsCode_starts_with: String
+  fipsCode_not_starts_with: String
+  fipsCode_ends_with: String
+  fipsCode_not_ends_with: String
+  fipsCode_i: String
+  fipsCode_not_i: String
+  fipsCode_contains_i: String
+  fipsCode_not_contains_i: String
+  fipsCode_starts_with_i: String
+  fipsCode_not_starts_with_i: String
+  fipsCode_ends_with_i: String
+  fipsCode_not_ends_with_i: String
+  fipsCode_in: [String]
+  fipsCode_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  type: String
+  type_not: String
+  type_in: [String]
+  type_not_in: [String]
+  state: StateWhereInput
+  state_is_null: Boolean
+  countySubdivision_every: CountySubdivisionWhereInput
+  countySubdivision_some: CountySubdivisionWhereInput
+  countySubdivision_none: CountySubdivisionWhereInput
+  fipsGeo_every: FipsGeoWhereInput
+  fipsGeo_some: FipsGeoWhereInput
+  fipsGeo_none: FipsGeoWhereInput
+}
+
+input CountyWhereUniqueInput {
+  id: ID
+}
+
+enum SortCountiesBy {
+  id_ASC
+  id_DESC
+  fipsCode_ASC
+  fipsCode_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+}
+
+input CountyOrderByInput {
+  id: OrderDirection
+  fipsCode: OrderDirection
+  name: OrderDirection
+  type: OrderDirection
+}
+
+input CountyUpdateInput {
+  fipsCode: String
+  name: String
+  type: String
+  state: StateRelateToOneInput
+  countySubdivision: CountySubdivisionRelateToManyInput
+  fipsGeo: FipsGeoRelateToManyInput
+}
+
+input CountiesUpdateInput {
+  id: ID!
+  data: CountyUpdateInput
+}
+
+input CountyCreateInput {
+  fipsCode: String
+  name: String
+  type: String
+  state: StateRelateToOneInput
+  countySubdivision: CountySubdivisionRelateToManyInput
+  fipsGeo: FipsGeoRelateToManyInput
+}
+
+input CountiesCreateInput {
+  data: CountyCreateInput
+}
+
+type CountySubdivision {
+  id: ID!
+  fipsCode: String
+  name: String
+  county: County
+  state: State
+  fipsGeo(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [FipsGeo!]
+  _fipsGeoMeta(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use fipsGeoCount instead."
+    )
+  fipsGeoCount(where: FipsGeoWhereInput! = {}): Int
+}
+
+input CountySubdivisionWhereInput {
+  AND: [CountySubdivisionWhereInput!]
+  OR: [CountySubdivisionWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  fipsCode: String
+  fipsCode_not: String
+  fipsCode_contains: String
+  fipsCode_not_contains: String
+  fipsCode_starts_with: String
+  fipsCode_not_starts_with: String
+  fipsCode_ends_with: String
+  fipsCode_not_ends_with: String
+  fipsCode_i: String
+  fipsCode_not_i: String
+  fipsCode_contains_i: String
+  fipsCode_not_contains_i: String
+  fipsCode_starts_with_i: String
+  fipsCode_not_starts_with_i: String
+  fipsCode_ends_with_i: String
+  fipsCode_not_ends_with_i: String
+  fipsCode_in: [String]
+  fipsCode_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  county: CountyWhereInput
+  county_is_null: Boolean
+  state: StateWhereInput
+  state_is_null: Boolean
+  fipsGeo_every: FipsGeoWhereInput
+  fipsGeo_some: FipsGeoWhereInput
+  fipsGeo_none: FipsGeoWhereInput
+}
+
+input CountySubdivisionWhereUniqueInput {
+  id: ID
+}
+
+enum SortCountySubdivisionsBy {
+  id_ASC
+  id_DESC
+  fipsCode_ASC
+  fipsCode_DESC
+  name_ASC
+  name_DESC
+}
+
+input CountySubdivisionOrderByInput {
+  id: OrderDirection
+  fipsCode: OrderDirection
+  name: OrderDirection
+}
+
+input CountySubdivisionUpdateInput {
+  fipsCode: String
+  name: String
+  county: CountyRelateToOneInput
+  state: StateRelateToOneInput
+  fipsGeo: FipsGeoRelateToManyInput
+}
+
+input CountySubdivisionsUpdateInput {
+  id: ID!
+  data: CountySubdivisionUpdateInput
+}
+
+input CountySubdivisionCreateInput {
+  fipsCode: String
+  name: String
+  county: CountyRelateToOneInput
+  state: StateRelateToOneInput
+  fipsGeo: FipsGeoRelateToManyInput
+}
+
+input CountySubdivisionsCreateInput {
+  data: CountySubdivisionCreateInput
+}
+
+type City {
+  id: ID!
+  fipsCode: String
+  name: String
+  cbsa: String
+  necta: String
+  state: State
+  locations(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Location!]
+  _locationsMeta(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use locationsCount instead."
+    )
+  locationsCount(where: LocationWhereInput! = {}): Int
+  fipsGeo(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [FipsGeo!]
+  _fipsGeoMeta(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use fipsGeoCount instead."
+    )
+  fipsGeoCount(where: FipsGeoWhereInput! = {}): Int
+}
+
+input CityWhereInput {
+  AND: [CityWhereInput!]
+  OR: [CityWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  fipsCode: String
+  fipsCode_not: String
+  fipsCode_contains: String
+  fipsCode_not_contains: String
+  fipsCode_starts_with: String
+  fipsCode_not_starts_with: String
+  fipsCode_ends_with: String
+  fipsCode_not_ends_with: String
+  fipsCode_i: String
+  fipsCode_not_i: String
+  fipsCode_contains_i: String
+  fipsCode_not_contains_i: String
+  fipsCode_starts_with_i: String
+  fipsCode_not_starts_with_i: String
+  fipsCode_ends_with_i: String
+  fipsCode_not_ends_with_i: String
+  fipsCode_in: [String]
+  fipsCode_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  cbsa: String
+  cbsa_not: String
+  cbsa_contains: String
+  cbsa_not_contains: String
+  cbsa_starts_with: String
+  cbsa_not_starts_with: String
+  cbsa_ends_with: String
+  cbsa_not_ends_with: String
+  cbsa_i: String
+  cbsa_not_i: String
+  cbsa_contains_i: String
+  cbsa_not_contains_i: String
+  cbsa_starts_with_i: String
+  cbsa_not_starts_with_i: String
+  cbsa_ends_with_i: String
+  cbsa_not_ends_with_i: String
+  cbsa_in: [String]
+  cbsa_not_in: [String]
+  necta: String
+  necta_not: String
+  necta_contains: String
+  necta_not_contains: String
+  necta_starts_with: String
+  necta_not_starts_with: String
+  necta_ends_with: String
+  necta_not_ends_with: String
+  necta_i: String
+  necta_not_i: String
+  necta_contains_i: String
+  necta_not_contains_i: String
+  necta_starts_with_i: String
+  necta_not_starts_with_i: String
+  necta_ends_with_i: String
+  necta_not_ends_with_i: String
+  necta_in: [String]
+  necta_not_in: [String]
+  state: StateWhereInput
+  state_is_null: Boolean
+  locations_every: LocationWhereInput
+  locations_some: LocationWhereInput
+  locations_none: LocationWhereInput
+  fipsGeo_every: FipsGeoWhereInput
+  fipsGeo_some: FipsGeoWhereInput
+  fipsGeo_none: FipsGeoWhereInput
+}
+
+input CityWhereUniqueInput {
+  id: ID
+}
+
+enum SortCitiesBy {
+  id_ASC
+  id_DESC
+  fipsCode_ASC
+  fipsCode_DESC
+  name_ASC
+  name_DESC
+  cbsa_ASC
+  cbsa_DESC
+  necta_ASC
+  necta_DESC
+}
+
+input CityOrderByInput {
+  id: OrderDirection
+  fipsCode: OrderDirection
+  name: OrderDirection
+  cbsa: OrderDirection
+  necta: OrderDirection
+}
+
+input CityUpdateInput {
+  fipsCode: String
+  name: String
+  cbsa: String
+  necta: String
+  state: StateRelateToOneInput
+  locations: LocationRelateToManyInput
+  fipsGeo: FipsGeoRelateToManyInput
+}
+
+input CitiesUpdateInput {
+  id: ID!
+  data: CityUpdateInput
+}
+
+input CityCreateInput {
+  fipsCode: String
+  name: String
+  cbsa: String
+  necta: String
+  state: StateRelateToOneInput
+  locations: LocationRelateToManyInput
+  fipsGeo: FipsGeoRelateToManyInput
+}
+
+input CitiesCreateInput {
+  data: CityCreateInput
+}
+
+type Image {
+  id: ID!
+  filename: String
+  locations(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Location!]
+  _locationsMeta(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use locationsCount instead."
+    )
+  locationsCount(where: LocationWhereInput! = {}): Int
+}
+
+input ImageWhereInput {
+  AND: [ImageWhereInput!]
+  OR: [ImageWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  filename: String
+  filename_not: String
+  filename_contains: String
+  filename_not_contains: String
+  filename_starts_with: String
+  filename_not_starts_with: String
+  filename_ends_with: String
+  filename_not_ends_with: String
+  filename_i: String
+  filename_not_i: String
+  filename_contains_i: String
+  filename_not_contains_i: String
+  filename_starts_with_i: String
+  filename_not_starts_with_i: String
+  filename_ends_with_i: String
+  filename_not_ends_with_i: String
+  filename_in: [String]
+  filename_not_in: [String]
+  locations_every: LocationWhereInput
+  locations_some: LocationWhereInput
+  locations_none: LocationWhereInput
+}
+
+input ImageWhereUniqueInput {
+  id: ID
+}
+
+enum SortImagesBy {
+  id_ASC
+  id_DESC
+  filename_ASC
+  filename_DESC
+}
+
+input ImageOrderByInput {
+  id: OrderDirection
+  filename: OrderDirection
+}
+
+input ImageUpdateInput {
+  filename: String
+  locations: LocationRelateToManyInput
+}
+
+input ImagesUpdateInput {
+  id: ID!
+  data: ImageUpdateInput
+}
+
+input ImageCreateInput {
+  filename: String
+  locations: LocationRelateToManyInput
+}
+
+input ImagesCreateInput {
+  data: ImageCreateInput
+}
+
+type ContentBlock {
+  id: ID!
+  active: Boolean
+  page: String
+  column: Int
+  blockOrder: Int
+  richText: ContentBlock_richText_DocumentField
+}
+
+type ContentBlock_richText_DocumentField {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input ContentBlockWhereInput {
+  AND: [ContentBlockWhereInput!]
+  OR: [ContentBlockWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  active: Boolean
+  active_not: Boolean
+  page: String
+  page_not: String
+  page_contains: String
+  page_not_contains: String
+  page_starts_with: String
+  page_not_starts_with: String
+  page_ends_with: String
+  page_not_ends_with: String
+  page_i: String
+  page_not_i: String
+  page_contains_i: String
+  page_not_contains_i: String
+  page_starts_with_i: String
+  page_not_starts_with_i: String
+  page_ends_with_i: String
+  page_not_ends_with_i: String
+  page_in: [String]
+  page_not_in: [String]
+  column: Int
+  column_not: Int
+  column_lt: Int
+  column_lte: Int
+  column_gt: Int
+  column_gte: Int
+  column_in: [Int]
+  column_not_in: [Int]
+  blockOrder: Int
+  blockOrder_not: Int
+  blockOrder_lt: Int
+  blockOrder_lte: Int
+  blockOrder_gt: Int
+  blockOrder_gte: Int
+  blockOrder_in: [Int]
+  blockOrder_not_in: [Int]
+}
+
+input ContentBlockWhereUniqueInput {
+  id: ID
+}
+
+enum SortContentBlocksBy {
+  id_ASC
+  id_DESC
+  active_ASC
+  active_DESC
+  page_ASC
+  page_DESC
+  column_ASC
+  column_DESC
+  blockOrder_ASC
+  blockOrder_DESC
+}
+
+input ContentBlockOrderByInput {
+  id: OrderDirection
+  active: OrderDirection
+  page: OrderDirection
+  column: OrderDirection
+  blockOrder: OrderDirection
+}
+
+input ContentBlockUpdateInput {
+  active: Boolean
+  page: String
+  column: Int
+  blockOrder: Int
+  richText: JSON
+}
+
+input ContentBlocksUpdateInput {
+  id: ID!
+  data: ContentBlockUpdateInput
+}
+
+input ContentBlockCreateInput {
+  active: Boolean
+  page: String
+  column: Int
+  blockOrder: Int
+  richText: JSON
+}
+
+input ContentBlocksCreateInput {
+  data: ContentBlockCreateInput
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+  @specifiedBy(
+    url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf"
+  )
+
+type Mutation {
+  createUser(data: UserCreateInput): User
+  createUsers(data: [UsersCreateInput]): [User]
+  updateUser(id: ID!, data: UserUpdateInput): User
+  updateUsers(data: [UsersUpdateInput]): [User]
+  deleteUser(id: ID!): User
+  deleteUsers(ids: [ID!]): [User]
+  createAccount(data: AccountCreateInput): Account
+  createAccounts(data: [AccountsCreateInput]): [Account]
+  updateAccount(id: ID!, data: AccountUpdateInput): Account
+  updateAccounts(data: [AccountsUpdateInput]): [Account]
+  deleteAccount(id: ID!): Account
+  deleteAccounts(ids: [ID!]): [Account]
+  createTag(data: TagCreateInput): Tag
+  createTags(data: [TagsCreateInput]): [Tag]
+  updateTag(id: ID!, data: TagUpdateInput): Tag
+  updateTags(data: [TagsUpdateInput]): [Tag]
+  deleteTag(id: ID!): Tag
+  deleteTags(ids: [ID!]): [Tag]
+  createLocation(data: LocationCreateInput): Location
+  createLocations(data: [LocationsCreateInput]): [Location]
+  updateLocation(id: ID!, data: LocationUpdateInput): Location
+  updateLocations(data: [LocationsUpdateInput]): [Location]
+  deleteLocation(id: ID!): Location
+  deleteLocations(ids: [ID!]): [Location]
+  createFipsGeo(data: FipsGeoCreateInput): FipsGeo
+  createFipsGeos(data: [FipsGeosCreateInput]): [FipsGeo]
+  updateFipsGeo(id: ID!, data: FipsGeoUpdateInput): FipsGeo
+  updateFipsGeos(data: [FipsGeosUpdateInput]): [FipsGeo]
+  deleteFipsGeo(id: ID!): FipsGeo
+  deleteFipsGeos(ids: [ID!]): [FipsGeo]
+  createState(data: StateCreateInput): State
+  createStates(data: [StatesCreateInput]): [State]
+  updateState(id: ID!, data: StateUpdateInput): State
+  updateStates(data: [StatesUpdateInput]): [State]
+  deleteState(id: ID!): State
+  deleteStates(ids: [ID!]): [State]
+  createCounty(data: CountyCreateInput): County
+  createCounties(data: [CountiesCreateInput]): [County]
+  updateCounty(id: ID!, data: CountyUpdateInput): County
+  updateCounties(data: [CountiesUpdateInput]): [County]
+  deleteCounty(id: ID!): County
+  deleteCounties(ids: [ID!]): [County]
+  createCountySubdivision(data: CountySubdivisionCreateInput): CountySubdivision
+  createCountySubdivisions(
+    data: [CountySubdivisionsCreateInput]
+  ): [CountySubdivision]
+  updateCountySubdivision(
+    id: ID!
+    data: CountySubdivisionUpdateInput
+  ): CountySubdivision
+  updateCountySubdivisions(
+    data: [CountySubdivisionsUpdateInput]
+  ): [CountySubdivision]
+  deleteCountySubdivision(id: ID!): CountySubdivision
+  deleteCountySubdivisions(ids: [ID!]): [CountySubdivision]
+  createCity(data: CityCreateInput): City
+  createCities(data: [CitiesCreateInput]): [City]
+  updateCity(id: ID!, data: CityUpdateInput): City
+  updateCities(data: [CitiesUpdateInput]): [City]
+  deleteCity(id: ID!): City
+  deleteCities(ids: [ID!]): [City]
+  createImage(data: ImageCreateInput): Image
+  createImages(data: [ImagesCreateInput]): [Image]
+  updateImage(id: ID!, data: ImageUpdateInput): Image
+  updateImages(data: [ImagesUpdateInput]): [Image]
+  deleteImage(id: ID!): Image
+  deleteImages(ids: [ID!]): [Image]
+  createContentBlock(data: ContentBlockCreateInput): ContentBlock
+  createContentBlocks(data: [ContentBlocksCreateInput]): [ContentBlock]
+  updateContentBlock(id: ID!, data: ContentBlockUpdateInput): ContentBlock
+  updateContentBlocks(data: [ContentBlocksUpdateInput]): [ContentBlock]
+  deleteContentBlock(id: ID!): ContentBlock
+  deleteContentBlocks(ids: [ID!]): [ContentBlock]
+  authenticateUserWithPassword(
+    email: String!
+    password: String!
+  ): UserAuthenticationWithPasswordResult!
+  createInitialUser(
+    data: CreateInitialUserInput!
+  ): UserAuthenticationWithPasswordSuccess!
+  endSession: Boolean!
+}
+
+union AuthenticatedItem = User
+
+union UserAuthenticationWithPasswordResult =
+    UserAuthenticationWithPasswordSuccess
+  | UserAuthenticationWithPasswordFailure
+
+type UserAuthenticationWithPasswordSuccess {
+  sessionToken: String!
+  item: User!
+}
+
+type UserAuthenticationWithPasswordFailure {
+  code: PasswordAuthErrorCode!
+  message: String!
+}
+
+enum PasswordAuthErrorCode {
+  FAILURE
+  IDENTITY_NOT_FOUND
+  SECRET_NOT_SET
+  MULTIPLE_IDENTITY_MATCHES
+  SECRET_MISMATCH
+}
+
+input CreateInitialUserInput {
+  name: String
+  email: String
+  password: String
+}
+
+type Query {
+  allUsers(
+    where: UserWhereInput! = {}
+    search: String
+    sortBy: [SortUsersBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [User!]
+  User(where: UserWhereUniqueInput!): User
+  _allUsersMeta(
+    where: UserWhereInput! = {}
+    search: String
+    sortBy: [SortUsersBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use usersCount instead."
+    )
+  usersCount(where: UserWhereInput! = {}): Int
+  allAccounts(
+    where: AccountWhereInput! = {}
+    search: String
+    sortBy: [SortAccountsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AccountOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Account!]
+  Account(where: AccountWhereUniqueInput!): Account
+  _allAccountsMeta(
+    where: AccountWhereInput! = {}
+    search: String
+    sortBy: [SortAccountsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AccountOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use accountsCount instead."
+    )
+  accountsCount(where: AccountWhereInput! = {}): Int
+  allTags(
+    where: TagWhereInput! = {}
+    search: String
+    sortBy: [SortTagsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [TagOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Tag!]
+  Tag(where: TagWhereUniqueInput!): Tag
+  _allTagsMeta(
+    where: TagWhereInput! = {}
+    search: String
+    sortBy: [SortTagsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [TagOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use tagsCount instead."
+    )
+  tagsCount(where: TagWhereInput! = {}): Int
+  allLocations(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Location!]
+  Location(where: LocationWhereUniqueInput!): Location
+  _allLocationsMeta(
+    where: LocationWhereInput! = {}
+    search: String
+    sortBy: [SortLocationsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [LocationOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use locationsCount instead."
+    )
+  locationsCount(where: LocationWhereInput! = {}): Int
+  allFipsGeos(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [FipsGeo!]
+  FipsGeo(where: FipsGeoWhereUniqueInput!): FipsGeo
+  _allFipsGeosMeta(
+    where: FipsGeoWhereInput! = {}
+    search: String
+    sortBy: [SortFipsGeosBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [FipsGeoOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use fipsGeosCount instead."
+    )
+  fipsGeosCount(where: FipsGeoWhereInput! = {}): Int
+  allStates(
+    where: StateWhereInput! = {}
+    search: String
+    sortBy: [SortStatesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [StateOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [State!]
+  State(where: StateWhereUniqueInput!): State
+  _allStatesMeta(
+    where: StateWhereInput! = {}
+    search: String
+    sortBy: [SortStatesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [StateOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use statesCount instead."
+    )
+  statesCount(where: StateWhereInput! = {}): Int
+  allCounties(
+    where: CountyWhereInput! = {}
+    search: String
+    sortBy: [SortCountiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountyOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [County!]
+  County(where: CountyWhereUniqueInput!): County
+  _allCountiesMeta(
+    where: CountyWhereInput! = {}
+    search: String
+    sortBy: [SortCountiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountyOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use countiesCount instead."
+    )
+  countiesCount(where: CountyWhereInput! = {}): Int
+  allCountySubdivisions(
+    where: CountySubdivisionWhereInput! = {}
+    search: String
+    sortBy: [SortCountySubdivisionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountySubdivisionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [CountySubdivision!]
+  CountySubdivision(
+    where: CountySubdivisionWhereUniqueInput!
+  ): CountySubdivision
+  _allCountySubdivisionsMeta(
+    where: CountySubdivisionWhereInput! = {}
+    search: String
+    sortBy: [SortCountySubdivisionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CountySubdivisionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use countySubdivisionsCount instead."
+    )
+  countySubdivisionsCount(where: CountySubdivisionWhereInput! = {}): Int
+  allCities(
+    where: CityWhereInput! = {}
+    search: String
+    sortBy: [SortCitiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CityOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [City!]
+  City(where: CityWhereUniqueInput!): City
+  _allCitiesMeta(
+    where: CityWhereInput! = {}
+    search: String
+    sortBy: [SortCitiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CityOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use citiesCount instead."
+    )
+  citiesCount(where: CityWhereInput! = {}): Int
+  allImages(
+    where: ImageWhereInput! = {}
+    search: String
+    sortBy: [SortImagesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ImageOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Image!]
+  Image(where: ImageWhereUniqueInput!): Image
+  _allImagesMeta(
+    where: ImageWhereInput! = {}
+    search: String
+    sortBy: [SortImagesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ImageOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use imagesCount instead."
+    )
+  imagesCount(where: ImageWhereInput! = {}): Int
+  allContentBlocks(
+    where: ContentBlockWhereInput! = {}
+    search: String
+    sortBy: [SortContentBlocksBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ContentBlockOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [ContentBlock!]
+  ContentBlock(where: ContentBlockWhereUniqueInput!): ContentBlock
+  _allContentBlocksMeta(
+    where: ContentBlockWhereInput! = {}
+    search: String
+    sortBy: [SortContentBlocksBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ContentBlockOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use contentBlocksCount instead."
+    )
+  contentBlocksCount(where: ContentBlockWhereInput! = {}): Int
+  authenticatedItem: AuthenticatedItem
+  keystone: KeystoneMeta!
+}
+
+type KeystoneMeta {
+  adminMeta: KeystoneAdminMeta!
+}
+
+type KeystoneAdminMeta {
+  enableSignout: Boolean!
+  enableSessionItem: Boolean!
+  lists: [KeystoneAdminUIListMeta!]!
+  list(key: String!): KeystoneAdminUIListMeta
+}
+
+type KeystoneAdminUIListMeta {
+  key: String!
+  itemQueryName: String!
+  listQueryName: String!
+  hideCreate: Boolean!
+  hideDelete: Boolean!
+  path: String!
+  label: String!
+  singular: String!
+  plural: String!
+  description: String
+  initialColumns: [String!]!
+  pageSize: Int!
+  labelField: String!
+  fields: [KeystoneAdminUIFieldMeta!]!
+  initialSort: KeystoneAdminUISort
+  isHidden: Boolean!
+}
+
+type KeystoneAdminUIFieldMeta {
+  path: String!
+  label: String!
+  isOrderable: Boolean!
+  fieldMeta: JSON
+  viewsIndex: Int!
+  customViewsIndex: Int
+  createView: KeystoneAdminUIFieldMetaCreateView!
+  listView: KeystoneAdminUIFieldMetaListView!
+  itemView(id: ID!): KeystoneAdminUIFieldMetaItemView
+  search: QueryMode
+}
+
+type KeystoneAdminUIFieldMetaCreateView {
+  fieldMode: KeystoneAdminUIFieldMetaCreateViewFieldMode!
+}
+
+enum KeystoneAdminUIFieldMetaCreateViewFieldMode {
+  edit
+  hidden
+}
+
+type KeystoneAdminUIFieldMetaListView {
+  fieldMode: KeystoneAdminUIFieldMetaListViewFieldMode!
+}
+
+enum KeystoneAdminUIFieldMetaListViewFieldMode {
+  read
+  hidden
+}
+
+type KeystoneAdminUIFieldMetaItemView {
+  fieldMode: KeystoneAdminUIFieldMetaItemViewFieldMode!
+}
+
+enum KeystoneAdminUIFieldMetaItemViewFieldMode {
+  edit
+  read
+  hidden
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+type KeystoneAdminUISort {
+  field: String!
+  direction: KeystoneAdminUISortDirection!
+}
+
+enum KeystoneAdminUISortDirection {
+  ASC
+  DESC
+}
