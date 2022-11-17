@@ -1,5 +1,5 @@
 # Destination Hub Website
-A content portal to showcase and (virtually) experience destinations.
+A content portal to showcase and (virtually) experience destinations. Built with a Jamstack (https://jamstack.org): Node.js, Next.js, React, GraphQL and Keystone headless CMS with PostgreSql.
 
 ## Dev Environment Setup
 
