@@ -5,6 +5,8 @@ import { countySubdivisions } from './countySubdivisions-data';
 import { cities } from './city-data';
 import { geoCodes } from './geocode-data';
 
+//TODO: seed data for users/accounts, locations, content blocks
+
 type StateProps = {
     code: string;
     fipsCode: string;
