@@ -38,8 +38,6 @@ export const lists = createSchema({
       },
     },
     fields: {
-      // isActive and/or is "in move"
-      // planner assignment, move relationship
       firstName: text({ isRequired: true }),
       lastName: text({ isRequired: true }),
       phone: text({ isRequired: true, isUnique: true }),
