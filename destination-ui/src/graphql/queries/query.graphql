@@ -176,3 +176,12 @@ query ContentBlock($page: String!) {
     }
   }
 }
+
+query Page($name: String!) {
+  allPages(where: { AND: [{ name: $name }, { active: true }] }) {
+    id
+    name
+    title
+    subTitle
+  }
+}

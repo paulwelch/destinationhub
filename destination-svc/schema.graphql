@@ -1886,6 +1886,131 @@ input ContentBlocksCreateInput {
   data: ContentBlockCreateInput
 }
 
+type Page {
+  id: ID!
+  active: Boolean
+  name: String
+  title: String
+  subTitle: String
+}
+
+input PageWhereInput {
+  AND: [PageWhereInput!]
+  OR: [PageWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  active: Boolean
+  active_not: Boolean
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  subTitle: String
+  subTitle_not: String
+  subTitle_contains: String
+  subTitle_not_contains: String
+  subTitle_starts_with: String
+  subTitle_not_starts_with: String
+  subTitle_ends_with: String
+  subTitle_not_ends_with: String
+  subTitle_i: String
+  subTitle_not_i: String
+  subTitle_contains_i: String
+  subTitle_not_contains_i: String
+  subTitle_starts_with_i: String
+  subTitle_not_starts_with_i: String
+  subTitle_ends_with_i: String
+  subTitle_not_ends_with_i: String
+  subTitle_in: [String]
+  subTitle_not_in: [String]
+}
+
+input PageWhereUniqueInput {
+  id: ID
+}
+
+enum SortPagesBy {
+  id_ASC
+  id_DESC
+  active_ASC
+  active_DESC
+  name_ASC
+  name_DESC
+  title_ASC
+  title_DESC
+  subTitle_ASC
+  subTitle_DESC
+}
+
+input PageOrderByInput {
+  id: OrderDirection
+  active: OrderDirection
+  name: OrderDirection
+  title: OrderDirection
+  subTitle: OrderDirection
+}
+
+input PageUpdateInput {
+  active: Boolean
+  name: String
+  title: String
+  subTitle: String
+}
+
+input PagesUpdateInput {
+  id: ID!
+  data: PageUpdateInput
+}
+
+input PageCreateInput {
+  active: Boolean
+  name: String
+  title: String
+  subTitle: String
+}
+
+input PagesCreateInput {
+  data: PageCreateInput
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -1968,6 +2093,12 @@ type Mutation {
   updateContentBlocks(data: [ContentBlocksUpdateInput]): [ContentBlock]
   deleteContentBlock(id: ID!): ContentBlock
   deleteContentBlocks(ids: [ID!]): [ContentBlock]
+  createPage(data: PageCreateInput): Page
+  createPages(data: [PagesCreateInput]): [Page]
+  updatePage(id: ID!, data: PageUpdateInput): Page
+  updatePages(data: [PagesUpdateInput]): [Page]
+  deletePage(id: ID!): Page
+  deletePages(ids: [ID!]): [Page]
   authenticateUserWithPassword(
     email: String!
     password: String!
@@ -2264,6 +2395,29 @@ type Query {
       reason: "This query will be removed in a future version. Please use contentBlocksCount instead."
     )
   contentBlocksCount(where: ContentBlockWhereInput! = {}): Int
+  allPages(
+    where: PageWhereInput! = {}
+    search: String
+    sortBy: [SortPagesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [PageOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Page!]
+  Page(where: PageWhereUniqueInput!): Page
+  _allPagesMeta(
+    where: PageWhereInput! = {}
+    search: String
+    sortBy: [SortPagesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [PageOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use pagesCount instead."
+    )
+  pagesCount(where: PageWhereInput! = {}): Int
   authenticatedItem: AuthenticatedItem
   keystone: KeystoneMeta!
 }

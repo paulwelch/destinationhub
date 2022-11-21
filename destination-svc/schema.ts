@@ -372,6 +372,17 @@ export const lists = createSchema({
       }),
     },
   }),
+  Page: list({
+    fields: {
+      active: checkbox({
+        isRequired: true,
+        defaultValue: false,
+      }),
+      name: text(),
+      title: text(),
+      subTitle: text(),
+    },
+  }),
   //do we need unformatted text?
   // TextBlock: list({
   //   fields: {

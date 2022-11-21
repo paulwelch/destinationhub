@@ -151,3 +151,11 @@ model ContentBlock {
   blockOrder Int?
   richText   Json?
 }
+
+model Page {
+  id       String   @id @default(cuid())
+  active   Boolean?
+  name     String?
+  title    String?
+  subTitle String?
+}
