@@ -48,10 +48,16 @@ import {
                 <Spacer />
             </Flex>
     
-            <Grid h="100%" templateColumns="repeat(1, 1fr)" gap={3}>
-                <GridItem colSpan={1} padding="3" bg="transparent">
-                <VStack>
-                    <Box>
+            <Grid 
+                h="100%"
+                templateColumns="repeat(5, 1fr)"
+                gap={3}
+                autoFlow="row"
+                autoRows="10"
+                padding={6}
+            >
+                <GridItem rowSpan={2} colSpan={1} bg="transparent">
+                    <VStack>
                     {!contentData
                         ? null
                         : contentData.allContentBlocks.map((e) => {
@@ -59,8 +65,18 @@ import {
                             <ContentBlockCard content={e.richText} />
                             ) : null;
                         })}
-                    </Box>
-                </VStack>
+                    </VStack>
+                </GridItem>
+                <GridItem rowStart={1} colStart={2} colSpan={4} bg="transparent">
+                    <VStack>
+                    {!contentData
+                        ? null
+                        : contentData.allContentBlocks.map((e) => {
+                            return e.column == 2 ? (
+                            <ContentBlockCard content={e.richText} />
+                            ) : null;
+                        })}
+                    </VStack>
                 </GridItem>
             </Grid>
             </Box>
