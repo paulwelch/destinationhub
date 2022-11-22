@@ -7,7 +7,6 @@ import {
     Spacer,
     VStack,
   } from "@chakra-ui/react";
-  import React from 'react';
   import { useRouter } from 'next/router'
   import bodyStyles from "../../../styles/Body.module.css";
   import ContentBlockCard from "../../../components/ContentBlock";
@@ -15,26 +14,8 @@ import {
   
   const Content = () => {
     const router = useRouter()
-    let id = ""
+    const p = router.query.id as string
 
-    console.log("router ready "+router.isReady)
-    React.useEffect(() => {
-        if(!router.isReady) return;
-        console.log("1 router query id: "+router.query.id+" is type "+typeof router.query.id);
-        id = router.query.id as string
-    }, [router.isReady])
-    console.log("router ready "+router.isReady)
-
-
-    console.log("2 router query id: "+id+" is type "+typeof id);
-    id = router.query.id as string
-
-    console.log("3 router query id: "+id+" is type "+typeof id);
-    let p = id
-    if (p == null || typeof p != "string" || p == "") {
-        console.log("setting default p "+p+" is a "+typeof p)
-        p = "test1"
-    }
     const {
         data: pageData,
         error: pageError,
