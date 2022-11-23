@@ -1,4 +1,5 @@
 export const states = [
+    { code: "00", fipsCode: "00", name: "Undefined" },
     { code: "AL", fipsCode: "01", name: "Alabama" },
     { code: "AK", fipsCode: "02", name: "Alaska" },
     { code: "AZ", fipsCode: "04", name: "Arizona" },

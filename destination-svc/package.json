@@ -1,21 +1,22 @@
 {
-  "name": "keystone-app",
-  "version": "2.0.10",
-  "private": true,
+  "name": "destination-svc",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
   "scripts": {
-    "dev": "keystone-next dev",
-    "seed-data": "keystone-next --seed-data",
-    "purge-data": "keystone-next --purge-data",
-    "start": "keystone-next start",
-    "build": "keystone-next build",
-    "postinstall": "keystone-next postinstall"
-  },
+    "seed-data": "keystone --seed-data",
+    "purge-data": "keystone --purge-data",
+    "dev": "keystone dev",
+    "start": "keystone start",
+    "build": "keystone build",
+    "postinstall": "keystone postinstall"
+  },  
   "dependencies": {
-    "@keystone-next/auth": "^30.0.0",
-    "@keystone-next/fields": "^13.0.0",
-    "@keystone-next/fields-document": "^7.0.3",
-    "@keystone-next/keystone": "^23.0.1",
-    "dotenv": "^10.0.0",
-    "typescript": "^4.3.5"
+    "@keystone-6/auth": "^5.0.1",
+    "@keystone-6/core": "^3.1.2",
+    "@keystone-6/fields-document": "^5.0.2",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "typescript": "^4.9.3"
   }
 }

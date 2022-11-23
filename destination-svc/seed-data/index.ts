@@ -1,9 +1,10 @@
-import { KeystoneContext } from '@keystone-next/types';
+import { KeystoneContext } from '@keystone-6/core/dist/declarations/src/types';
 import { states } from './state-data';
 import { counties } from './county-data';
 import { countySubdivisions } from './countySubdivisions-data';
 import { cities } from './city-data';
 import { geoCodes } from './geocode-data';
+import { ExitStatus } from 'typescript';
 
 //TODO: seed data for users/accounts, locations, content blocks
 
@@ -51,14 +52,14 @@ export async function insertSeedData(context: KeystoneContext) {
     const createState = async (stateData: StateProps) => {
       let state = null;
       try {
-        state = await context.lists.State.findOne({
+        state = await context.query.State.findOne({
           where: { code: stateData.code },
           query: 'id',
         });
       } catch (e) { console.log('exception: ' + e ); }
       if (!state) {
         console.log(`👩 Adding state: ${stateData.name}`);
-        state = await context.lists.State.createOne({
+        state = await context.query.State.createOne({
           data: stateData,
           query: 'id',
         });
@@ -68,27 +69,25 @@ export async function insertSeedData(context: KeystoneContext) {
 
     const createCity = async (cityData: CityProps) => {
       let city = null;
-      let state = null;
+      let state1 = null;
       try {
-        state = await context.lists.State.findOne({
-          where: { fipsCode: cityData.state },
+        state1 = await context.query.State.findOne({
+          where: { fipsCode: cityData.state as string },
           query: 'id',
         });
       } catch(e) { console.log('exception: ' + e ); }
-      if (!state) {
+      if (!state1) {
         console.log('ERROR: State not found: ' + cityData.state );
       } else {
         try {
-          city = await context.lists.City.count({
-            where: { 
-                      fipsCode: cityData.fipsCode, 
-                      state: state, 
-                   },
+          city = await context.query.City.count({
+            where: { fipsCode: {equals: cityData.fipsCode },
+                     state: state1.fipsCode }, 
           });
         } catch (e) { console.log('exception: ' + e ); }
         if (!city && city == 0) {
-          cityData.state = { connect: {id: state.id } };
-          city = await context.lists.City.createOne({
+          cityData.state = { connect: {id: state1.id } };
+          city = await context.query.City.createOne({
             data: cityData,
             query: 'id',
           });
@@ -99,25 +98,26 @@ export async function insertSeedData(context: KeystoneContext) {
 
     const createCounty = async (countyData: CountyProps) => {
       let county = null;
-      let state;
+      let state1;
       try {
-        state = await context.lists.State.findOne({
-          where: { fipsCode: countyData.state },
+        state1 = await context.query.State.findOne({
+          where: { fipsCode: countyData.state as string },
           query: 'id',
         });
       } catch(e) { console.log('exception: ' + e ); };
-      if(!state) {
+      if(!state1) {
         console.log('ERROR: State not found: ' + countyData.state );
       } else {
         try {
-          county = await context.lists.County.count({ 
-            where: { fipsCode: countyData.fipsCode, 
-                     state: state }, 
+          county = await context.query.County.count({ 
+            where: { fipsCode: {equals: countyData.fipsCode},
+                     state: state1.fipsCode,
+                    }
           });
         } catch (e) { console.log('exception: ' + e ); }
         if (!county && county == 0) {
-          countyData.state = { connect: {id: state.id } };
-          county = await context.lists.County.createOne({
+          countyData.state = { connect: {id: state1.id } };
+          county = await context.query.County.createOne({
             data: countyData,
             query: 'id',
           });
@@ -128,37 +128,39 @@ export async function insertSeedData(context: KeystoneContext) {
 
     const createCountySubdivision = async (countySubdivisionData: CountySubdivisionProps) => {
       let countySubdivision = null;
-      let state;
+      let state1;
       try {
-        state = await context.lists.State.findOne({
-          where: { fipsCode: countySubdivisionData.state },
+        state1 = await context.query.State.findOne({
+          where: { fipsCode: countySubdivisionData.state as string },
           query: 'id',
         });
       } catch(e) { console.log('exception: ' + e ); };
-      if(!state) {
+      if(!state1) {
         console.log('ERROR: State not found: ' + countySubdivisionData.state );
       } else {
-        let county;
+        let county1;
         try {
-          county = await context.lists.County.findMany({
-            where: { fipsCode: countySubdivisionData.county,
-                     state: state },
+          county1 = await context.query.County.findMany({
+            where: { fipsCode: {equals: countySubdivisionData.county as string},
+                     state: state1.fipsCode,
+                    },
           });
         } catch(e) { console.log('exception: ' + e ); };
-        if(!county || !county[0]) {
+        if(!county1 || !county1[0]) {
           console.log('Error: County not found: '+ countySubdivisionData.county + ' state: ' + countySubdivisionData.state);
         } else {
           try {
-            countySubdivision = await context.lists.CountySubdivision.count({
-              where: { fipsCode: countySubdivisionData.fipsCode, 
-                       county: county[0], 
-                       state: state },
+            countySubdivision = await context.query.CountySubdivision.count({
+              where: { fipsCode: {equals: countySubdivisionData.fipsCode}, 
+                       county: county1[0].fipsCode, 
+                       state: state1.fipsCode,
+                      },
               });
           } catch (e) { console.log('exception: ' + e ); }
           if (!countySubdivision && countySubdivision == 0) { 
-            countySubdivisionData.county = { connect: {id: county[0].id } };
-            countySubdivisionData.state = { connect: {id: state.id } };
-            countySubdivision = await context.lists.CountySubdivision.createOne({
+            countySubdivisionData.county = { connect: {id: county1[0].id } };
+            countySubdivisionData.state = { connect: {id: state1.id } };
+            countySubdivision = await context.query.CountySubdivision.createOne({
               data: countySubdivisionData,
               query: 'id',
             });
@@ -171,49 +173,55 @@ export async function insertSeedData(context: KeystoneContext) {
     const createGeoCodes = async (geoCodeData: GeoCodeProps) => {
       let geoCode = null;
 
-      let state;
+      let state1;
       if(geoCodeData.state) {
         try {
-          state = await context.lists.State.findOne({
-            where: { fipsCode: geoCodeData.state },
+          state1 = await context.query.State.findOne({
+            where: { fipsCode: geoCodeData.state as string },
             query: 'id',
           });
+          console.log("*** state result "+state1.fipsCode);
         } catch(e) { console.log('state exception: ' + e) };
-        if(geoCodeData.state && !state) console.log('state not found: ' + geoCodeData.state);
+        if(geoCodeData.state && !state1) console.log('state not found: ' + geoCodeData.state);
       }
 
-      let county;
-      if(geoCodeData.county && state) {
+      let county1;
+      if(geoCodeData.county && state1 && state1.fipsCode) {
           try {
-          county = await context.lists.County.findMany({
-            where: { fipsCode: geoCodeData.county,
-                      state: state },
+            console.log("*** code "+geoCodeData.county+" state fips "+state1.fipsCode);
+          county1 = await context.query.County.findMany({
+            where: { fipsCode: {equals: geoCodeData.county},
+                     state: state1.fipsCode,
+                    },
           });
+          console.log("*** county: "+ count1[0].id)
         } catch(e) { console.log('county exception: ' + e) };
-        if(geoCodeData.county && !county) console.log('county not found: ' + geoCodeData.county);
+        if(geoCodeData.county && !county1) console.log('county not found: ' + geoCodeData.county);
       }
 
-      let countySubdivision;
-      if(geoCodeData.countySubdivision && state && county && county[0] ) {
+      let countySubdivision1;
+      if(geoCodeData.countySubdivision && state1 && state1.fipsCode && county1 && county1[0] ) {
         try {
-          countySubdivision = await context.lists.CountySubdivision.findMany({
-            where: { fipsCode: geoCodeData.countySubdivision,
-                      county: county[0], 
-                      state: state },
+          countySubdivision1 = await context.query.CountySubdivision.findMany({
+            where: { fipsCode: {equals: geoCodeData.countySubdivision},
+                     county: county1[0].fipsCode, 
+                     state: state1.fipsCode,
+                    },
           });
         } catch(e) { console.log('subdivision exception: ' + e) };
-        if(geoCodeData.countySubdivision && !countySubdivision) console.log('subdivision not found: ' + geoCodeData.countySubdivision);
+        if(geoCodeData.countySubdivision && !countySubdivision1) console.log('subdivision not found: ' + geoCodeData.countySubdivision);
       }
 
-      let city;
-      if(geoCodeData.city && state) {
+      let city1;
+      if(geoCodeData.city && state1 && state1.fipsCode) {
         try {
-          city = await context.lists.City.findMany({
-            where: { fipsCode: geoCodeData.city,
-                      state: state },
+          city1 = await context.query.City.findMany({
+            where: { fipsCode: {equals: geoCodeData.city},
+                     state: state1.fipsCode,
+                    },
           });
         } catch(e) { console.log('city exception: ' + e) };
-        if(geoCodeData.city && !city) console.log('city not found: ' + geoCodeData.city);
+        if(geoCodeData.city && !city1) console.log('city not found: ' + geoCodeData.city);
       }
 
       // TODO: make insertSeedData idempotent by only inserting if not already there - for now, assume purge runs first and insert runs once to completions
@@ -238,39 +246,41 @@ export async function insertSeedData(context: KeystoneContext) {
       // if(geoCode && geoCode > 0) console.log('FipsGeo already exists: ' + geoCodeData.areaName );
       // if (!geoCode || geoCode == 0) { 
 
-        if(city && city[0]) {
-          geoCodeData.city = { connect: {id: city[0].id} };
+        if(city1 && city1[0]) {
+          geoCodeData.city = { connect: {id: city1[0].id} };
         } else {
-          geoCodeData.city = null;
+          // geoCodeData.city = null;
         }
-        if(countySubdivision && countySubdivision[0]) {
-          geoCodeData.countySubdivision = { connect: {id: countySubdivision[0].id} }; 
+        if(countySubdivision1 && countySubdivision1[0]) {
+          geoCodeData.countySubdivision = { connect: {id: countySubdivision1[0].id} }; 
         } else {
-          geoCodeData.countySubdivision = null;
+          // geoCodeData.countySubdivision = null;
         }
-        if(county && county[0]) {
-          geoCodeData.county = { connect: {id: county[0].id} }; 
+        if(county1 && county1[0]) {
+          geoCodeData.county = { connect: {id: county1[0].id} }; 
         } else {
 
-          geoCodeData.county = null;
+          // geoCodeData.county = null;
         }
-        if(state) {
-          geoCodeData.state = { connect: {id: state.id} };
+        if(state1 && state1.fipsCode) {
+          geoCodeData.state = { connect: {id: state1.id} };
         } else {
-          geoCodeData.state = null;
+          // geoCodeData.state = null;
         }
 
-        geoCode = await context.lists.FipsGeo.createOne({
-          data: geoCodeData,
-          query: 'id',
-        });
+        if(state1 && state1.fipsCode && state1.fipsCode != "00") {
+            geoCode = await context.query.FipsGeo.createOne({
+            data: geoCodeData,
+            query: 'id',
+          });
+        };
       //}
 
       return geoCode;
     };
 
 
-    let cnt = 0;
+   let cnt = 0;
     // for (const state of states) {
     //   cnt++;
     //   await createState(state);
@@ -343,18 +353,18 @@ export async function insertSeedData(context: KeystoneContext) {
     //     ids: countySubdivision,
     // });
 
-    console.log('Purging FipsGeo');
-    let fipsGeo;
-    try {
-      fipsGeo = await context.lists.FipsGeo.findMany({
-        query: 'id',
-      });
-    } catch (e) { fipsGeo = []; }
+    // console.log('Purging FipsGeo');
+    // let fipsGeo;
+    // try {
+    //   fipsGeo = await context.query.FipsGeo.findMany({
+    //     query: 'id',
+    //   });
+    // } catch (e) { fipsGeo = []; }
 
-    fipsGeo = fipsGeo.map(({ id }) => id)
-    await context.lists.FipsGeo.deleteMany({
-        ids: fipsGeo,
-    });
+    // fipsGeo = fipsGeo.map(({ id }) => id)
+    // await context.query.FipsGeo.deleteMany({
+    //     ids: fipsGeo,
+    // });
 
     console.log(`✅ Data purged`);
     process.exit();
